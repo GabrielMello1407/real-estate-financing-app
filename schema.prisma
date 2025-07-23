@@ -1,0 +1,29 @@
+// schema.prisma
+// Modelo compatível com Supabase (PostgreSQL)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Proposal {
+  id             String   @id @default(uuid())
+  name           String
+  email          String
+  phone          String
+  propertyValue  Float
+  downPayment    Float
+  financedAmount Float
+  monthlyPayment Float
+  totalAmount    Float
+  financingTerm  Int
+  interestRate   Float
+  signature      String?  // base64 ou URL da assinatura
+  status         String
+  createdAt      DateTime @default(now())
+}
